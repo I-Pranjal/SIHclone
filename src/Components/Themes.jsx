@@ -41,7 +41,7 @@ const Themes = () => {
       <div className="relative flex items-center justify-center max-w-6xl mx-auto">
         {/* Prev Button */}
         <button
-          className="absolute left-0 z-10 bg-white shadow-md p-2 rounded-full hover:bg-gray-100"
+          className="absolute left-0 z-10 bg-white text-black shadow-md p-2 rounded-full hover:bg-gray-100"
           onClick={prevSlide}
         >
           <MoveLeft />
@@ -78,7 +78,7 @@ const Themes = () => {
 
         {/* Next Button */}
         <button
-          className="absolute right-0 z-10 bg-white shadow-md p-2 rounded-full hover:bg-gray-100"
+          className="absolute right-0 z-10 bg-white shadow-md p-2 rounded-full text-black hover:bg-gray-100"
           onClick={nextSlide}
         >
           <MoveRight />
