@@ -2,7 +2,7 @@ import React from 'react';
 
 export default function WhatisSIH() {
   return (
-    <div className="w-full px-4 py-8 bg-white text-orange-400">
+    <div className="w-full px-4 py-8 bg-none text-orange-400 font-bold">
       <div className="max-w-4xl mx-auto">
         <h2 className="text-5xl sm:text-6xl font-semibold  mb-4">
           What is SIH?

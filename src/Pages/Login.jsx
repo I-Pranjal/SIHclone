@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
-import '../Components/styling.css';
 import { addDoc, collection, getDocs } from 'firebase/firestore';
 import { db } from '../firebase-config';
-import { redirect } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 export const userContext = React.createContext();
 
@@ -12,15 +11,11 @@ export default function Login({ setUserDetails }) {
   const [role, setRole] = useState('');
   const [fname, setFname] = useState('');
   const [lname, setLname] = useState('');
+  const navigate = useNavigate();
+
   const userCollectionRef = collection(db, 'users');
 
-  const details = {
-    lname,
-    fname,
-    mail,
-    password,
-    role,
-  };
+  const details = { lname, fname, mail, password, role };
 
   const createUser = async () => {
     await addDoc(userCollectionRef, {
@@ -41,7 +36,6 @@ export default function Login({ setUserDetails }) {
         ...doc.data(),
       }));
 
-      // Check if the user exists with the given credentials
       const userFound = jsonData.find(
         (user) =>
           user.email === mail &&
@@ -50,108 +44,99 @@ export default function Login({ setUserDetails }) {
       );
 
       if (userFound) {
-        console.log('User found:', userFound);
         setUserDetails(userFound);
-        redirect(www.google.com);
-        alert('User found! Login successful.');
-        navigate('/admin'); // Navigate to the admin section
+        alert('Login successful!');
+        navigate('/admin');
       } else {
-        await createUser(); // Create user in Firestore
-        console.log('Form submitted:', { mail, password, role });
-        alert('No matching user found! New user has been created.');
+        await createUser();
+        alert('User not found. Created new user.');
       }
     } catch (error) {
-      console.error('Error fetching user data:', error);
-      alert('Error fetching user data. Please try again later.');
+      console.error('Error fetching user:', error);
+      alert('Error occurred. Please try again.');
     }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!mail || !password || !role || role === 'Please select user role') {
-      alert('Please enter all values!');
+    if (!mail || !password || !role || !fname || !lname || role === 'Please select user role') {
+      alert('Please fill in all fields!');
       return;
     }
 
     try {
-      await fetchUser(); // Check if user exists
-      // Reset each property
+      await fetchUser();
       setMail('');
       setPassword('');
       setRole('');
       setFname('');
       setLname('');
     } catch (error) {
-      console.error('Error during submission:', error);
+      console.error('Submission error:', error);
     }
   };
 
   return (
     <userContext.Provider value={details}>
-      <div className='container login'>
-        <h1>REGISTER HERE</h1>
-        <div
-          style={{
-            width: '30%',
-            display: 'flex',
-            alignItems: 'center',
-            justifyItems: 'center',
-            padding: '3rem 0',
-          }}
-        >
-          <form
-            style={{
-              display: 'flex',
-              flexDirection: 'column',
-              width: '100%',
-              alignItems: 'center',
-            }}
-          >
+      <div className="min-h-screen flex items-center justify-center bg-gray-50 p-6">
+        <div className="bg-white shadow-md rounded-lg p-8 w-full max-w-md">
+          <h2 className="text-2xl font-bold text-center text-blue-800 mb-6">Register / Login</h2>
+
+          <form className="space-y-4" onSubmit={handleSubmit}>
             <input
-              type='text'
-              placeholder='Your First Name'
-              id='login-input'
+              type="text"
+              placeholder="First Name"
               value={fname}
               onChange={(e) => setFname(e.target.value)}
+              className="w-full px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+              required
             />
             <input
-              type='text'
-              placeholder='Last Name'
-              id='login-input'
+              type="text"
+              placeholder="Last Name"
               value={lname}
               onChange={(e) => setLname(e.target.value)}
+              className="w-full px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+              required
             />
             <input
-              type='text'
-              placeholder='Enter your email ID'
-              id='login-input'
+              type="email"
+              placeholder="Email"
               value={mail}
               onChange={(e) => setMail(e.target.value)}
+              className="w-full px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+              required
             />
             <input
-              type='password'
-              placeholder='Enter your password'
-              id='login-input'
+              type="password"
+              placeholder="Password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
+              className="w-full px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+              required
             />
             <select
               value={role}
               onChange={(e) => setRole(e.target.value)}
-              id='login-input'
+              className="w-full px-4 py-2 border rounded text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              required
             >
-              <option>Please select user role</option>
+              <option disabled value="">Please select user role</option>
               <option>Super Admin</option>
               <option>College/Institute SPOC</option>
               <option>Team Leader</option>
             </select>
 
-            <a href='#' style={{ padding: '1rem' }}>
-              Forgot your password?
-            </a>
-            <button onClick={handleSubmit} id='loginbtn'>
-              SUBMIT
+            <div className="text-right">
+              <a href="#" className="text-blue-600 text-sm hover:underline">Forgot your password?</a>
+            </div>
+
+            <button
+              type="submit"
+              className="w-full bg-blue-700 text-white py-2 rounded hover:bg-blue-800 transition"
+            >
+              Submit
             </button>
           </form>
         </div>

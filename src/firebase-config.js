@@ -2,9 +2,11 @@
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
 
+const firebaseApiKey = import.meta.env.FIREBASE_API ; 
+
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyDJ_RkV7A9gT1Vw_QQtkZX5AN10bY2q-Mw",
+  apiKey: firebaseApiKey,
   authDomain: "smartindia-893ad.firebaseapp.com",
   projectId: "smartindia-893ad",
   storageBucket: "smartindia-893ad.firebasestorage.app",

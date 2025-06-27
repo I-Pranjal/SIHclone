@@ -10,7 +10,7 @@ const Navbar = () => {
   return (
     <nav className="w-full bg-white shadow-md">
       <div className="max-w-7xl mx-auto px-4 py-2 flex justify-between items-center">
-        <h1 className="text-xl font-bold">SIH</h1>
+        <h1 className="text-xl text-orange-300 font-bold">SIH</h1>
 
         {/* Desktop Menu */}
         <div className="hidden md:flex gap-6">
@@ -45,7 +45,7 @@ const Navbar = () => {
         </div>
 
         {/* Hamburger Menu */}
-        <div className="md:hidden">
+        <div className="md:hidden text-black">
           <button onClick={() => setMenuOpen(!menuOpen)}>
             {menuOpen ? <X size={28} /> : <Menu size={28} />}
           </button>
