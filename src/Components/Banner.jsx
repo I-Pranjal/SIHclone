@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './styling.css';
+// import './styling.css';
 import {images} from '../assets/data.jsx'
 
 const Banner = () => {

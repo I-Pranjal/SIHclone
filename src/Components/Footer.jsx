@@ -1,5 +1,5 @@
 import React from 'react';
-import './styling.css';
+// import './styling.css';
 import { FaFacebookF, FaInstagram, FaTwitter, FaLinkedin, FaPhoneAlt, FaEnvelope } from 'react-icons/fa';
 
 export default function Footer() {

@@ -1,75 +1,38 @@
 import React from 'react';
-import './styling.css';
 
 export default function Ytlink() {
   return (
-    <div className='YTLink'>
-      {/* Left visual image */}
-      <div>
-        <img src='./yt-visual-left.png' alt='Left Visual' id='yt-left' />
-      </div>
+    <div className="w-full flex flex-col lg:flex-row items-center justify-center gap-6 px-4 py-8 bg-gray-50 relative overflow-hidden">
+      {/* Left Image */}
+      <img
+        src="/yt-visual-left.png"
+        alt="Left Visual"
+        className="w-32 h-32 lg:w-48 lg:h-48 object-contain"
+      />
 
-      {/* Youtube content section */}
-      <div className="ytcontent">
-        {/* Top-left decorative div */}
-        <div
-          style={{
-            position: 'absolute',
-            top: '10px',
-            left: '10px',
-            width: '12rem',
-            height: '12rem',
-            backgroundColor: '#002449',
-            borderRadius: '25px',
-            zIndex: 1
-          }}
-        ></div>
+      {/* YouTube Section with Decorative Backgrounds */}
+      <div className="relative z-10 flex items-center justify-center w-full max-w-4xl px-4 py-6">
+        {/* Top-left Decorative Box */}
+        <div className="absolute top-0 left-0 w-32 h-32 bg-[#002449] rounded-2xl z-0" />
 
         {/* YouTube iframe */}
-        <div
-          style={{
-            position: 'relative',
-            textAlign: 'center',
-            zIndex: 2,
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            height: '100%',
-            padding: '1rem',
-          }}
-        >
-          <iframe
-            src="https://www.youtube.com/embed/znMbKz6ZPno"
-            style={{
-              height: '27rem',
-              width: '35rem',
-              borderRadius: '25px',
-              border: 'none'
-            }}
-            title="YouTube Video"
-            allowFullScreen
-          ></iframe>
-        </div>
+        <iframe
+          className="w-full aspect-video rounded-2xl border-none z-10"
+          src="https://www.youtube.com/embed/znMbKz6ZPno"
+          title="YouTube Video"
+          allowFullScreen
+        ></iframe>
 
-        {/* Bottom-right decorative div */}
-        <div
-          style={{
-            position: 'absolute',
-            bottom: '10px',
-            right: '10px',
-            width: '12rem',
-            height: '12rem',
-            backgroundColor: '#002449',
-            borderRadius: '25px',
-            zIndex: 1
-          }}
-        ></div>
+        {/* Bottom-right Decorative Box */}
+        <div className="absolute bottom-0 right-0 w-32 h-32 bg-[#002449] rounded-2xl z-0" />
       </div>
 
-      {/* Right visual image */}
-      <div>
-        <img src='./yt-visual-right.png' alt='Right Visual' id='yt-right' />
-      </div>
+      {/* Right Image */}
+      <img
+        src="/yt-visual-right.png"
+        alt="Right Visual"
+        className="w-32 h-32 lg:w-48 lg:h-48 object-contain"
+      />
     </div>
   );
 }
